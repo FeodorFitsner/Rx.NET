@@ -49,23 +49,23 @@ Write-Host "Restoring packages for $scriptPath\System.Reactive.sln" -Foreground 
 msbuild "$scriptPath\System.Reactive.sln" /m /t:restore /p:Configuration=$configuration 
 
 Write-Host "Building $scriptPath\System.Reactive.sln" -Foreground Green
-msbuild "$scriptPath\System.Reactive.sln" /m /t:build /p:Configuration=$configuration 
+msbuild "$scriptPath\System.Reactive.sln" /m /verbosity:minimal /t:build /p:Configuration=$configuration 
 
 Write-Host "Building Packages" -Foreground Green
-msbuild "$scriptPath\src\System.Reactive\System.Reactive.csproj" /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true /p:NuGetBuildTasksPackTargets="workaround"
-msbuild "$scriptPath\src\Microsoft.Reactive.Testing\Microsoft.Reactive.Testing.csproj" /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true
-msbuild "$scriptPath\src\System.Reactive.Observable.Aliases\System.Reactive.Observable.Aliases.csproj" /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true
+msbuild "$scriptPath\src\System.Reactive\System.Reactive.csproj" /verbosity:minimal /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true /p:NuGetBuildTasksPackTargets="workaround"
+msbuild "$scriptPath\src\Microsoft.Reactive.Testing\Microsoft.Reactive.Testing.csproj" /verbosity:minimal /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true
+msbuild "$scriptPath\src\System.Reactive.Observable.Aliases\System.Reactive.Observable.Aliases.csproj" /verbosity:minimal /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true
 
-msbuild "$scriptPath\facades\System.Reactive.Core\System.Reactive.Core.csproj" /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true /p:NuGetBuildTasksPackTargets="workaround"
-msbuild "$scriptPath\facades\System.Reactive.Experimental\System.Reactive.Experimental.csproj" /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true 
-msbuild "$scriptPath\facades\System.Reactive.Interfaces\System.Reactive.Interfaces.csproj" /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true 
-msbuild "$scriptPath\facades\System.Reactive.Linq\System.Reactive.Linq.csproj" /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true 
-msbuild "$scriptPath\facades\System.Reactive.PlatformServices\System.Reactive.PlatformServices.csproj" /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true /p:NuGetBuildTasksPackTargets="workaround"
-msbuild "$scriptPath\facades\System.Reactive.Providers\System.Reactive.Providers.csproj" /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true 
-msbuild "$scriptPath\facades\System.Reactive.Runtime.Remoting\System.Reactive.Runtime.Remoting.csproj" /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true 
-msbuild "$scriptPath\facades\System.Reactive.Windows.Forms\System.Reactive.Windows.Forms.csproj" /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true
-msbuild "$scriptPath\facades\System.Reactive.Windows.Threading\System.Reactive.Windows.Threading.csproj" /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true /p:NuGetBuildTasksPackTargets="workaround"
-msbuild "$scriptPath\facades\System.Reactive.WindowsRuntime\System.Reactive.WindowsRuntime.csproj" /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true /p:NuGetBuildTasksPackTargets="workaround"
+msbuild "$scriptPath\facades\System.Reactive.Core\System.Reactive.Core.csproj" /verbosity:minimal /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true /p:NuGetBuildTasksPackTargets="workaround"
+msbuild "$scriptPath\facades\System.Reactive.Experimental\System.Reactive.Experimental.csproj" /verbosity:minimal /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true 
+msbuild "$scriptPath\facades\System.Reactive.Interfaces\System.Reactive.Interfaces.csproj" /verbosity:minimal /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true 
+msbuild "$scriptPath\facades\System.Reactive.Linq\System.Reactive.Linq.csproj" /verbosity:minimal /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true 
+msbuild "$scriptPath\facades\System.Reactive.PlatformServices\System.Reactive.PlatformServices.csproj" /verbosity:minimal /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true /p:NuGetBuildTasksPackTargets="workaround"
+msbuild "$scriptPath\facades\System.Reactive.Providers\System.Reactive.Providers.csproj" /verbosity:minimal /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true 
+msbuild "$scriptPath\facades\System.Reactive.Runtime.Remoting\System.Reactive.Runtime.Remoting.csproj" /verbosity:minimal /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true 
+msbuild "$scriptPath\facades\System.Reactive.Windows.Forms\System.Reactive.Windows.Forms.csproj" /verbosity:minimal /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true
+msbuild "$scriptPath\facades\System.Reactive.Windows.Threading\System.Reactive.Windows.Threading.csproj" /verbosity:minimal /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true /p:NuGetBuildTasksPackTargets="workaround"
+msbuild "$scriptPath\facades\System.Reactive.WindowsRuntime\System.Reactive.WindowsRuntime.csproj" /verbosity:minimal /t:pack /p:Configuration=$configuration /p:PackageOutputPath=$artifacts /p:NoPackageAnalysis=true /p:NuGetBuildTasksPackTargets="workaround"
 
 .\nuget.exe pack "$scriptPath\facades\System.Reactive.Compatibility.nuspec" -Version $packageSemVer -MinClientVersion 2.12 -nopackageanalysis -outputdirectory "$artifacts" 
 
