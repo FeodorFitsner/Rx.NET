@@ -1,4 +1,4 @@
-image: Visual Studio 2015
+image: Visual Studio 2017
 
 environment:
   COVERALLS_REPO_TOKEN:
@@ -6,7 +6,10 @@ environment:
   SignClientSecret:
     secure: oR9TMOkkvP/prmXyMT+p6mQhjyw3JDLbuywezBABvXzkvNsdNZgi2yPaHhgaofrb
 
-build_script:
-- ps: .\build.ps1
+init:
+  - git config --global core.autocrlf input
+  
+skip_tags: true
 
-test: off
+build_script:
+  - ps: .\Rx.NET\Source\build-new.ps1
