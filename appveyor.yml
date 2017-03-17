@@ -16,5 +16,5 @@ build_script:
 
 test: off
 
-on_finish:
-- ps: Start-Sleep -s 1800
+#on_finish:
+#- ps: Start-Sleep -s 1800
