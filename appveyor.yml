@@ -15,3 +15,6 @@ build_script:
   - ps: .\Rx.NET\Source\build-new.ps1
 
 test: off
+
+on_finish:
+- ps: Start-Sleep -s 1800
